@@ -1,0 +1,104 @@
+#+title: Project.el
+
+* Why use project management?
+
+  Project management simplifies people's workflow across multiple
+  projects.
+
+  Multi-project workflow without project management is confusing
+  
+  - Each project can contain files with the same name (=Makefile=,
+    =README=)
+  - One emacs frame could contain a mix of buffers from multiple
+    projects
+  - Managing a separate emacs frame per project can be disadvantageous
+    + No global search across projects buffers
+
+* Options
+
+** Projectile
+
+   Developped by Bozhidar Batsov since 2011, [[https://projectile.mx/][Projectile]] is the popular
+   option for project management in Emacs.
+
+** Project.el
+
+   Project.el has been part of emacs since emacs 25! No installation
+   is required if your emacs is recent enough.
+   
+* Tutorial
+
+** Project registration
+
+   Projects cand either be registered one-by-one or and entire
+   directory can be searched for projects that will be automatically
+   registered.
+
+*** Register projects one-by-one
+
+    Running =C-x p p= (switch project) will display a =... Choose a
+    dir= option, which allows the manual registration of a project
+    directory.
+
+*** Search a directory for projects to register
+
+    Use =M-x project-remember-projects-under= to crawl a directory and
+    register projects found in child directories.
+
+*** Completion
+    
+    The list of known projects is fed to the standard emacs completion
+    system. It is therefore usable with most completion systems
+    (vertico in my case).
+
+** Basic management
+
+   Use =C-x p f= to open up a project file. Once files are open,
+   buffers can be listed with =C-x p b=. Mini-buffer completion works
+   for all these commands, making them easy to use.
+
+   The current project can be closed, with all associated buffers by
+   using the =C-x p k= keybind. Alternatively, the project can be
+   switched to another using the =C-x p p= shortcut.
+
+** Project-wide search
+
+   Searching through projects is an important. /Project.el/ provides
+   the default keybinding =C-x p g= to allow grepping through the
+   entire project folder. Moving through matches is quick and easy.
+
+** Search and replace
+
+   Basic refactoring operations often rely on project-wide
+   search-and-replace. This is handle with the keychord =C-x p r=,
+   which switches to the interactive search-and-replace interface. In
+   that interface, you can interactively choose what matches to skip
+   or replace or perform replacements in entire files.
+
+** Compilation
+
+   Invoke =C-x p c=, the command will run from the project's root.
+
+** Version control
+
+*** Magit
+
+    Magit can be opened with =C-x g= and uses the current project root.
+
+*** VC-mode
+
+    VC-mode is integrated in project.el and opened with =C-x p v=.
+
+** Open up a shell
+
+   A shell can be opened with =C-x p s=
+
+** Registered projects
+
+
+
+* Comparison to projectile
+
+   - Not as polished
+   - Not as much support from 3rd party libs (ripgrep for ex.)
+
