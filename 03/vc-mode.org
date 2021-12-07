@@ -1,0 +1,100 @@
+#+title: Exploring VC
+* What is VC
+  
+  VC is Emacs'default version-control integration. It is a framework
+  that supports multiple backends such as:
+
+  - Git
+  - Bazaar
+  - Subversion
+  - CVS
+  - more...
+
+We'll review 2 workflows, one with _git_ and one with _svn_.
+
+* Git
+
+  The typical git workflow consists of:
+  
+  - Creating a repo
+  - Creating a feature branch
+  - Adding files
+  - Coding
+  - Commiting
+  - Pushing
+
+** Creating a repo
+
+   To create a repo, start by editing files in a new directory. Hop in
+   and hit =C-x v i=. You'll be asked to choose a backend. Select
+   =git= and your project will be initialised.
+
+** Create a feature branch
+
+   Hit the combo =C-u C-x v v= to create a new branch. Enter the
+   branch name you wish. Once created, the branch will not yet be
+   checked out. Do =C-x v r= to choose your newly created branch.
+
+** Adding files
+
+   Create the files as usual and code into them. To add to version
+   control, hit =C-x v i=.
+
+** Committing
+
+   To commit /the current file/, use VC's magical /"next step"/ command =C-x v v= and
+   enter the commit information.
+
+   To commit more than one change in one go, open up the /VC Dir/ with
+   =C-x v d=. Then mark all changes you want to commit together with
+   =m= (like in dired) and commit with =v=.
+
+** Pushing
+
+   Push by typing =C-x P=.
+
+** Pulling
+
+   You can push remote changes by using =C-x v +=.
+
+* SVN
+
+  The typical git workflow consists of:
+  
+  - Pulling changes
+  - Adding files
+  - Coding
+  - Commiting
+
+** Adding files
+
+   Create the files as usual and code into them. To add to version
+   control, hit =C-x v i=.
+
+** Committing
+
+   To commit /the current file/, use VC's magical /"next step"/ command =C-x v v= and
+   enter the commit information.
+
+   To commit more than one change in one go, open up the /VC Dir/ with
+   =C-x v d=. Then mark all changes you want to commit together with
+   =m= (like in dired) and commit with =v=.
+
+** Pushing
+
+   Push by typing =C-x P=.
+
+** Pulling
+
+   You can push remote changes by using =C-x v +=.
+
+* Common actions
+
+** View logs
+
+   To view the project log, hit =C-x v ==.
+
+** Blame
+
+   To annotate a file (git blame), type =C-x v g=.
+
