@@ -1,0 +1,115 @@
+#+TITLE: Yasnippet
+
+[[http://joaotavora.github.io/yasnippet/][Yasnippet is a plugin]] that features interactive expansions of snippets
+in Emacs. Snippets are defined with a /domain-specific language/ that
+allows multiple input parameters and their transformation through
+embedded elisp code.
+
+* Installing Yasnippet
+
+  Either install through /package.el/ by hitting =M-x packages-install
+  yasnippet=, or use an alternative package manager such as
+  /straight.el/ and declare it like so:
+
+  #+BEGIN_SRC Emacs-Lisp
+  (straight-use-package 'yasnippet)
+  #+END_SRC
+
+  You'll need to define a key combo to expand snippet keys on
+  demand. My choice is =M-j=, configure like so:
+
+  #+BEGIN_SRC Emacs-Lisp
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (defun my--yas-hook ()
+    (define-key yas-minor-mode-map (kbd "M-j") 'yas-expand))
+  (add-hook 'yas-minor-mode-hook #'my--yas-hook)
+  #+END_SRC
+
+  In order to use /yasnippet/, either enable it globally in your
+  configuration like so:
+
+  #+BEGIN_SRC Emacs-Lisp
+  (yas-global-mode)
+  #+END_SRC
+
+  Or define the use of the minor mode in each mode hook you want it
+  like so (for org-mode):
+
+  #+BEGIN_SRC Emacs-Lisp
+  (add-hook 'org-mode-hook #'yas-minor-mode)
+  #+END_SRC
+
+* Writing snippets
+
+  Snippets are written in a specific syntax that defines a few options
+  like /key/ and /name/. Each placeholder is denoted with a =$= and a
+  number. The final spot where the /point/ will end is written with
+  =$0=.
+
+  #+BEGIN_SRC Snippet
+    # key: if
+    # --
+    if [ "$1" $2 "$3" ]; then
+      $0
+    fi
+  #+END_SRC
+
+** Snippet directory structure
+
+   Snippets live under the =yas-snippet-dirs= directory. The folder
+   structure and file naming they follow is specific. Each sub-folder
+   of =yas-snippets-dir= must be a mode name and each snippet file
+   within must be named after its key. For example this =if= snippet
+   for =Shell= would live in =(yas-snippet-dirs)/Shell/if=:
+
+   #+BEGIN_SRC Snippet
+    # key: if
+    # --
+    if [ "$1" $2 "$3" ]; then
+      $0
+    fi
+  #+END_SRC
+
+** Placeholders
+
+   Snippet placeholders are filled in by the user by order of
+   number; =$1=, then =$2= and so on, ending with =$0=. They can be
+   repeated in the snippet to fill multiple places at once. This is
+   convenient for languages like XML like so:
+
+   #+BEGIN_SRC Snippet
+     # key: tag
+     # --
+     <$1>
+       $0
+     </$1>
+   #+END_SRC
+
+** Transformations
+   
+   Placeholders can have transformations applied, for example case
+   changes by invoking lisp code in their definition. Like so:
+
+   #+BEGIN_SRC Snippet
+     # key: tag
+     # --
+     <${1:$$(upcase yas-text)}>
+       $0
+     </$1>
+   #+END_SRC
+
+   Note that the tranformation applied to =$1= also applied to its
+   mirror without having to redefine the transformation.
+
+** Choices
+
+   Placeholders can also come with a list of choices. This is also
+   accomplished through lisp code like so:
+   
+   #+BEGIN_SRC Snippet
+     # key: em
+     # --
+     <${1:$$(yas-choose-value '("em" "b" "i")}>
+       $0
+     </$1>
+   #+END_SRC
