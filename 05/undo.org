@@ -1,0 +1,25 @@
+#+TITLE: Undo
+
+The ergonomy of Emacs pre-dates what is now accepted as convention for
+the usual copy/paste/undo systems, and so some things are very
+different. Undo is one of them.
+
+* Undoing
+
+  When starting to undo using a keybind like C-/, Emacs will
+  implicitly initiate an /undo sequence/. You can carry on hitting C-/
+  to go back in time until you've found what you wanted; any other
+  keybind will break the /undo sequence/.
+
+  The =undo= action itself is registered in Emacs'undo
+  system. Therefore, after breaking from an /undo sequence/, it's
+  possible to undo the undo action, which equates to re-doing.
+
+  This is a bit odd, but works quite well.
+
+* Useful links
+  
+  * [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Undo.html][Emacs manual: Basic Undo]]
+  * [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Undo.html][Emacs manual: Undo]]
+  * [[https://www.emacswiki.org/emacs/UndoTree][EmacsWiki: Undo tree (advanced undo)]]
+

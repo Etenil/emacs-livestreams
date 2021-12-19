@@ -1,0 +1,26 @@
+#+TITLE: Emacs shorts 01: Tramp, Dired and Undo
+
+* Undo
+
+  Emacs is very old as software goes. When it was created many
+  features we take for granted didn't exist yet, like C-x/C-c/C-v and
+  of course the undo/redo feature. Therefore Emacs'undo is quite
+  unusual, but very powerful.
+
+  [[./undo.org][Find out more]]
+
+* Dired
+
+  Dired is Emacs'bundled file management system. It is very powerful
+  and convenient.
+
+  [[./dired.org][Find out more]]
+
+
+* Tramp
+
+  Tramp is a framework bundled in Emacs to access remote -- or local
+  -- filesystems through rsh/rcp or ssh/scp.
+
+  [[./tramp.org][Find out more]]
+

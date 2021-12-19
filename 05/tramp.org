@@ -1,0 +1,65 @@
+#+TITLE: Emacs Tramp
+
+* Why would you want to use this?
+
+  Tramp is an abstraction layer for emacs to access filesystems on
+  remote machines, or the local machine as a different user. Its main
+  use-cases include:
+
+  * Editing/managing files remotely
+  * Editing a file as root (sudo)
+
+* Editing files remotely
+
+  The primary purpose of TRAMP is to edit files remotely. This can be
+  done by altering the file path that needs to be visited like so:
+
+  #+BEGIN_SRC
+  /[protocol]:[user]@[host]:[file-path]
+  #+END_SRC
+
+  For example editing =/etc/fstab= on a remote computer can be
+  achieved by visiting (C-x C-f):
+
+  #+BEGIN_SRC
+  /ssh:root@server.com:/etc/fstab
+  #+END_SRC
+
+  Once the connection is established, you can use Emacs as normal to
+  edit the file.
+
+** Dired
+
+   Other modes of Emacs also support TRAMP, such as Dired. Using dired
+   with TRAMP is an effective way to manage files on a remote
+   computer.
+   
+   To open a folder with Dired on a remote machine, either visit the
+   directory like you would a file, or use C-x d to visit the
+   directory with Dired directly.
+
+** Performance
+
+   TRAMP isn't particularly fast. It works well to edit code or
+   configuration files remotely, especially for one-offs. But it can
+   be quite slow and unwieldy for everyday use or to look at large
+   files (like log files).
+
+* Using tramp for Sudo
+
+  It's sometimes necessary to edit files as root on your local
+  machine, for example to adjust network settings or other. Using =vim=
+  in terminal is distasteful and opening Emacs as root would mean
+  lacking your beautiful configuration.
+
+  Tramp is useful to also edit files as root. To do so, visit a file
+  as usual but change the file path to:
+
+  #+BEGIN_SRC
+  /sudo::/[file-path]
+  #+END_SRC
+
+* Useful links
+
+  * [[https://www.gnu.org/software/tramp/][Tramp documentation]]
+

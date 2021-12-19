@@ -1,0 +1,65 @@
+#+TITLE: Dired
+
+Dired is Emacs'file manager.
+
+* Use-cases for Dired
+
+  Run-of-the-mill file operations:
+
+  * Move/rename
+  * Copy
+  * Delete
+  * Create directories
+  * Compress
+
+  Batch file actions:
+
+  * Batch editing
+
+* Basic operations
+
+  To open a directory, either visit it like a file -- =C-x f <dir>= --
+  or explicitly open the directory with =C-x d <dir>=.
+
+** Refresh directory listing
+
+   Press =g= to refresh the diectory listing.
+
+** Creating a directory
+   
+   Press =+= to create a new directory.
+
+** Copy files
+
+   To copy a single file, move the pointer onto it, press =C= and
+   select a name and path for it to be copied to.
+
+   To copy multiple files, /mark/ all the files that need copying by
+   pressing =m= onto them; then press =C= to copy all those files into
+   a directory. To unselect all files, press =U=.
+
+** Moving files
+
+   Moving files is similar to /copying/, but press =R= instead of
+   =C=. Moving a files is also the way to rename a file as the
+   behaviour is identical.
+
+** Deleting files
+
+   Deleting files also works in the same manner as /copying/, but with
+   the =D= keybind instead.
+
+** Compress files
+
+   To compress files, select them, then press =c= and choose an
+   archive name.
+
+* Batch editing
+
+  Batch renames are done with WDired, a special mode of Dired. Access
+  it by pressing =C-x C-q=.
+
+  When in WDired mode, you can edit the dired buffer as though it was
+  just text. Hit =C-c C-c= for all your changes to be actually applied
+  to the filesystem.
+
