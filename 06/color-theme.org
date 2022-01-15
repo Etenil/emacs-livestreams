@@ -1,0 +1,66 @@
+* Custom EMACS color theme
+
+Color themes are a bunch of font-face definition, generally matching a
+particular color palette.
+
+** Initial setup
+
+You need to have a place where all your custom themes will
+live. Create a folder, then add that path to the
+=custom-theme-load-path= variable like so:
+
+#+BEGIN_SRC elisp
+  (add-to-list 'custom-theme-load-path "/my/themes")
+#+END_SRC
+
+
+** How to make a theme
+
+Start by declaring the theme with the =deftheme= macro.
+
+Define the theme's custom faces with =custom-theme-set-faces=.
+
+Provide the theme with =(provide 'my-theme)= to tell Emacs it can be
+used.
+
+Add an autoload section to add the custom theme file to the
+=custom-theme-load-path= var.
+
+Thus, a very (very) basic theme would be like so:
+
+#+BEGIN_SRC elisp
+  (deftheme demo "A light theme")
+  (custom-theme-set-faces
+   'demo
+   '(default ((t (:background "#FFFFFF" :foreground "#000000")))))
+  (provide 'demo)
+#+END_SRC
+
+** Custom faces
+
+Custom faces are defined as =(name ((NOW (:key val ...))))=. The very
+basic face names of the Emacs GUI to define are:
+
+   - default
+   - vertical-border
+   - fringe
+   - cursor
+   - bold
+   - italic
+   - bold-italic
+   - region
+   - underline
+   - custom-face-tag
+   - custom-state
+
+Font names to define for a useful theme for programming can be found
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html][in the font-lock documentation]].
+
+** Mode faces
+
+Each mode can define their own custom faces. For example Markdown
+declares custom faces for its different header levels. Whenever you
+want to add a face definition, simply place your cursor on the text
+and do =M-x describe-face=. This will echo the face name in the
+minibuffer.
+
